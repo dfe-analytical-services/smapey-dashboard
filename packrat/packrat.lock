@@ -115,7 +115,7 @@ Requires: bitops
 Package: callr
 Source: CRAN
 Version: 2.0.2
-Hash: 693b22054c5ca1edcb771a080c376349
+Hash: 369f1d4821e56d8b0fa696d2719c3fab
 Requires: R6, assertthat, crayon, debugme, testthat
 
 Package: cellranger
@@ -419,6 +419,7 @@ Requires: Rcpp, plyr, stringr
 Package: rlang
 Source: CRAN
 Version: 0.3.4
+Hash: 6a5220d1a973463418286038095d8c0b
 
 Package: rmarkdown
 Source: CRAN
@@ -511,7 +512,7 @@ Hash: 6fa2bf398c125cc05fd8f47a3e2d556c
 
 Package: testthat
 Source: CRAN
-Version: 2.1.1
+Version: 1.0.2
 Hash: 00a20d71ed0d31e2d284e4d2d3b3d7e3
 Requires: R6, cli, crayon, digest, magrittr, praise, rlang, withr
 
