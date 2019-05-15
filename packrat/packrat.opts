@@ -5,6 +5,7 @@ vcs.ignore.lib: TRUE
 vcs.ignore.src: FALSE
 local.repos: 
 load.external.packages.on.startup: TRUE
+symlink.system.packages: TRUE
 ignored.packages: 
 quiet.package.installation: TRUE
 snapshot.recommended.packages: FALSE
@@ -12,3 +13,5 @@ snapshot.fields:
     Imports
     Depends
     LinkingTo
+    
+    
