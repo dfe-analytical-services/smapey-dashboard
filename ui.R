@@ -25,7 +25,7 @@ sidebar <- dashboardSidebar(
     #   https://stackoverflow.com/questions/31013769/locking-r-shiny-dashboard-sidebar-shinydashboard 
     # style = "position: fixed; overflow: visible;",  # this fixed the side bar and broke other things, so not including
      
-    selectInput("Local_Authority", "LA",
+    selectInput(inputId="Local_Authority", label="LA",
                 choices = EYFSP_Data$LA_Name, multiple=FALSE, #selectize=TRUE,
                 width = '98%',selected = "Bury"),
     menuItem("Cover Page", tabName = "cover", icon = icon("book-open")),
@@ -40,6 +40,10 @@ sidebar <- dashboardSidebar(
 )
 
 body <- dashboardBody(
+  tags$head(includeScript("www/google-analytics.js")),
+  
+  
+  
   tabItems(
 
 # Cover Page --------------------------------------------------------------
