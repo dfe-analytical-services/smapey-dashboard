@@ -67,7 +67,7 @@ body <- dashboardBody(
               "),
             
             br(),
-            p(" Please refer to the 'notes' tab for additional information and caveats. In addition, please click the 'question icon' (see an example to the right) for a subset of the information available on the user guidance tab. The icon is situated to the right where available.
+            p(" Please refer to the 'User Guidance' tab for additional information and caveats. In addition, please click the 'question icon' (see an example to the right) for a subset of the information available on the user guidance tab. The icon is situated to the right where available.
               ") %>%  helper(icon = "question-circle", 
                      colour = "turquoise",
                      size = "s",
@@ -201,7 +201,7 @@ body <- dashboardBody(
                 id = "tabset1",width = 12,#, height = "500px"
                 tabPanel("Percentages achieving a good level of development", 
                          fluidRow(
-                                      box(width=8, title="Neighbours", solidHeader = TRUE, status="primary",
+                                      box(width=8, title="Statistical Neighbours", solidHeader = TRUE, status="primary",
                                             htmlOutput("GLD_neighbour_plot_graph_title"),
                                             plotOutput("GLD_neighbour_plot")
                                           ),
@@ -231,7 +231,7 @@ body <- dashboardBody(
                                   )
                                 ),
                            fluidRow(
-                                    box(width=8, title="Neighbours Gaps", solidHeader = TRUE,status="primary",
+                                    box(width=8, title="Statistical Neighbours Gaps", solidHeader = TRUE,status="primary",
                                         htmlOutput("GLD_neighbour_gap_plot_graph_title"),
                                           plotOutput("GLD_neighbour_gaps_plot")
                                        ),
@@ -322,7 +322,7 @@ body <- dashboardBody(
                 tabPanel("Percentages achieving at least expected level of development", "",
                          fluidRow(         
                           
-                                    box(width=8, title="Neighbours", solidHeader = TRUE,status="primary",
+                                    box(width=8, title="Statistical Neighbours", solidHeader = TRUE,status="primary",
                                        htmlOutput("AoL_comb_neighbour_plot_graph_title"),
                                        plotOutput("AoL_comb_neighbour_plot")      
                                        ),
@@ -340,7 +340,7 @@ body <- dashboardBody(
                 
                 tabPanel("Gaps", "", 
                     fluidRow(
-                           box(width=8, title="Neighbours Gaps", solidHeader = TRUE,status="primary",
+                           box(width=8, title="Statistical Neighbours Gaps", solidHeader = TRUE,status="primary",
                                htmlOutput("AoL_comb_neighbours_gaps_plot_graph_title"),
                               plotOutput("AoL_comb_neighbours_gaps_plot")) ,
                            box(width=4, title="Trend", solidHeader = TRUE, status="primary",
@@ -431,7 +431,7 @@ body <- dashboardBody(
                 id = "tabset1",width = 12,#, height = "500px"
                 tabPanel("Percentages achieving at least expected level of development", "",
                          fluidRow(  
-                                   box(width=8, title="Neighbours", solidHeader = TRUE, status="primary",
+                                   box(width=8, title="Statistical Neighbours", solidHeader = TRUE, status="primary",
                                        htmlOutput("AoL_neighbour_plot_graph_title"),
                                        plotOutput("AoL_neighbour_plot")
                                   ),
@@ -459,7 +459,7 @@ body <- dashboardBody(
                                   )
                                 ),
                          fluidRow(  
-                                    box(width=8, title="Neighbours Gaps", solidHeader = TRUE, status="primary",
+                                    box(width=8, title="Statistical Neighbours Gaps", solidHeader = TRUE, status="primary",
                                          htmlOutput("AoL_neighbours_gaps_plot_graph_title"),
                                          plotOutput("AoL_neighbours_gaps_plot")
                                         ),
@@ -536,7 +536,7 @@ body <- dashboardBody(
                     ),
             fluidRow(
                         column(12,
-                                  box(width=8, title="Neighbour Graph", solidHeader = TRUE,
+                                  box(width=8, title="Statistical Neighbours", solidHeader = TRUE,
                                       htmlOutput("Take_up_neighbour_plot_graph_title"),
                                       plotOutput("Take_up_neighbour_plot"),status="primary"
                                       ),    
@@ -595,7 +595,7 @@ body <- dashboardBody(
             # h2("Notes"),
             # br(),
             h3("Hints and tips on using the Dashboard"),
-            p("- Note when there is additional content available within the tabs, for example in the 'Summary and Content' tab there are both 'Summary' and 'Context' sub tab items beneath the boxes"),
+            p("- Note, there are often sub tab items within the tabs. For example, in the 'Summary and Content' tab there are both 'Summary' and 'Context' sub tab items beneath the boxes"),
             p("- Scroll down to see all tab content. National graphs are at the bottom of main tabs"),
             p("- For national graphs, see 'Show all LAs' drop down to far right of graph. This toggles showing all LA names or just the selected LA and the statistical neighbours"),
             h3("Abbreviations and Definitions"),
@@ -625,7 +625,7 @@ For further information please look at the LAIT: "),
                        For more information, please see the disclosure control section of the technical document for information on data suppression here: "),
                tags$a(href="https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile","https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile"),
               
-               tags$li("EYFSP: Children achieving at least the expected level in the ELGs within the three prime areas of learning and within literacy and mathematics is classed as achieving 
+               tags$li("EYFSP: Children achieving at least the expected level in the early learning goals within the three prime areas of learning and within literacy and mathematics is classed as achieving 
                       a 'good level of development'."),
               tags$li("EYFSP: Figures based on final data."),
               tags$li("EYFSP: Only includes children with a valid result for every early learning goal."),

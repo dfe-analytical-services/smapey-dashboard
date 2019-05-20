@@ -601,7 +601,7 @@ get_trend_take_up_data_fn <- function(dataset, LA,age_group, latest_year)
   LA_key<- paste0(LA," take-up percent")
   National_key= "National take-up percent"
   # #Graph Title
-  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," benefitting from funded early education places compared to all ",trend_graph_title_group," children nationally")
+  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," benefitting from funded early education places compared to ",trend_graph_title_group," children nationally")
   
   
   #First retrieve the trend data for the LA
@@ -750,7 +750,7 @@ get_national_plot <- function(dataset="long_data_step1",neighbour_dataset,metric
           theme(axis.ticks.x = element_line(colour = "grey30"),
                 panel.grid.minor.y = element_blank(),
                 panel.grid.major.x = element_blank())+
-          labs(x="",y="Percentage",title=paste0("The percentage of ",title_group," in ",selected_LA,title_part," nationally.	"))+
+         labs(x="",y="Percentage",title=paste0("The percentage of ",title_group," in ",selected_LA," compared to ",title_group," nationally.	"))+
          theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.4),
                legend.position="bottom")#,
     #coord_flip()
@@ -832,11 +832,12 @@ get_variables_selected_LA <- function(metric="GLD",group="FSM",AoL_type="",selec
 # Small table for notes tab -----------------------------------------------
 # Easier to format by putting in table.
 
-notes_tab_terms<- c("All other","AoL","CL","EYFSP","FSM","Gap within LA","GLD","LA","Lit","NA ","Non SEN","SEN","Statistical Neighbours","Unclassified")
+notes_tab_terms<- c("All other","AoL","CL","ELG","EYFSP","FSM","Gap within LA","GLD","LA","Lit","NA ","Non SEN","SEN","Statistical Neighbours","Unclassified")
 
 notes_tab_explanations<- c("Those children who are not eligible for FSM or their FSM eligibility was unknown",
                            "Area of Learning",
                            "Communication and Language",
+                           "Early Learning Goals",
                            "Early Years Foundation Stage Profile",
                            "Those children who are known to be eligible for free school meals",
                            "Gap between FSM and all other children within the LA for a selected measure",

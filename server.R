@@ -344,13 +344,13 @@ shinyServer(function(input, output,session) {
     abs_national_gap_perc_text<- sprintf('%.1f',abs(national_gap_perc))
     
    # str1 <- paste("For ", input$Local_Authority," ",LA_perc_text,"% of children " , title_group," achieve a good level of development compared to  ",
-    str1 <- paste("For ", input$Local_Authority," ",LA_perc_text,"% of " , title_group," achieve a good level of development compared to  ",
+    str1 <- paste0("For ", input$Local_Authority,", ",LA_perc_text,"% of " , title_group," achieve a good level of development compared to  ",
                   national_perc_text,"% of ",comparison_group," nationally.")
-    str2 <- paste("For ", input$Local_Authority," the gap for ",title_group,"is ", abs_national_gap_perc_text," percentage points ",
-                  above_below_equal, "the national average for ",gap_comparison_group,".")
+    str2 <- paste0("For ", input$Local_Authority,", the gap for ",title_group," is ", abs_national_gap_perc_text," percentage points ",
+                  above_below_equal, " the national average for ",gap_comparison_group,".")
     
     if(group_type=="FSM"&gap_comparison_group=="all other children in "){
-      str2 <- paste("For ", input$Local_Authority," the gap for ",title_group,"is ", abs_national_gap_perc_text," percentage points ",
+      str2 <- paste("For ", input$Local_Authority," the gap for ",title_group," is ", abs_national_gap_perc_text," percentage points ",
                     above_below_equal, " ",gap_comparison_group, " in ",input$Local_Authority,".")
        
     
@@ -1150,7 +1150,7 @@ shinyServer(function(input, output,session) {
     LA_AoL_comb<-AoL_comb_neighbours_plot_data() %>% filter(LA_Name==input$Local_Authority) %>% select(EYFSP_LA_variable) %>% as.numeric()
     valueBox(
       value = formatC(LA_AoL_comb, digits = 0, format = "f"),
-      subtitle = "LA AoL Stats Neigh. Rank",
+      subtitle = "LA AoL Statistical Neighbour Rank",
       icon = icon("area-chart"), 
       color =  "yellow" 
     )
@@ -1255,13 +1255,13 @@ shinyServer(function(input, output,session) {
    national_perc_text<- sprintf('%.1f',national_perc)
    abs_national_gap_perc_text<- sprintf('%.1f',abs(national_gap_perc))
    
-   str1 <- paste("For ", input$Local_Authority," ",LA_perc_text,"% of " , title_group," achieve the expected level of development for ",AoL_comb ,"compared to  ",
+   str1 <- paste0("For ", input$Local_Authority,", ",LA_perc_text,"% of " , title_group," achieve the expected level of development for ",AoL_comb ," compared to  ",
                  national_perc_text,"% of ",comparison_group," nationally.")
-   str2 <- paste("For ", input$Local_Authority," the gap for ",title_group,"is ", abs_national_gap_perc_text," percentage points ",
-                 above_below_equal, "the national average for ",gap_comparison_group,"that achieve at least the expected level of development for ",AoL_comb,".")
+   str2 <- paste0("For ", input$Local_Authority,", the gap for ",title_group," is ", abs_national_gap_perc_text," percentage points ",
+                 above_below_equal, " the national average for ",gap_comparison_group,"that achieve at least the expected level of development for ",AoL_comb,".")
    
    if(group_type=="FSM"&gap_comparison_group=="all other children in "){
-     str2 <- paste("For ", input$Local_Authority," the gap for ",title_group,"is ", abs_national_gap_perc_text," percentage points ",
+     str2 <- paste("For ", input$Local_Authority," the gap for ",title_group," is ", abs_national_gap_perc_text," percentage points ",
                    above_below_equal, " ",gap_comparison_group, " in ",input$Local_Authority,"that achieve at least the expected level of development for ",AoL_comb,".")
    }
     
@@ -1676,7 +1676,7 @@ shinyServer(function(input, output,session) {
     LA_AoL<-AoL_neighbours_plot_data() %>% filter(LA_Name==input$Local_Authority) %>% select(EYFSP_LA_variable) %>% as.numeric()
     valueBox(
       value = paste0(formatC(LA_AoL, digits = 1, format = "f"),"%"),
-      subtitle = paste0(input$AoL_group_select,":LA AoL"),
+      subtitle = paste0(input$AoL_group_select,": LA AoL"),
       icon = icon("area-chart"),
       color = "orange"
     )
@@ -1693,7 +1693,7 @@ shinyServer(function(input, output,session) {
     
     valueBox(
       value = formatC(LA_AoL, digits = 0, format = "f"),
-      subtitle = paste0(input$AoL_group_select,": LA AoL National Rank"),
+      subtitle = paste0(input$AoL_group_select,":  LA AoL National Rank"),
       icon = icon("area-chart"),
       color = "orange" 
     )
@@ -1708,7 +1708,7 @@ shinyServer(function(input, output,session) {
     
     valueBox(
       value = formatC(LA_AoL, digits = 0, format = "f"),
-      subtitle = paste0(input$AoL_group_select,": LA AoL Stats Neighbour Rank"),
+      subtitle = paste0(input$AoL_group_select,":  LA AoL Statistical Neighbour Rank"),
       icon = icon("area-chart"), 
       color =  "orange" 
     )
@@ -1813,13 +1813,13 @@ shinyServer(function(input, output,session) {
     national_perc_text<- sprintf('%.1f',national_perc)
     abs_national_gap_perc_text<- sprintf('%.1f',abs(national_gap_perc))
     
-    str1 <- paste("For ", input$Local_Authority," ",LA_perc_text,"% of " , title_group," achieve the expected level of development for ",tolower(input$AoL_select) ,"compared to  ",
+    str1 <- paste("For ", input$Local_Authority,", ",LA_perc_text,"% of " , title_group," achieve the expected level of development for ",tolower(input$AoL_select) ," compared to  ",
                   national_perc_text,"% of ",comparison_group," nationally.")
-    str2 <- paste("For ", input$Local_Authority," the gap for ",title_group,"is ", abs_national_gap_perc_text," percentage points ",
+    str2 <- paste("For ", input$Local_Authority,", the gap for ",title_group," is ", abs_national_gap_perc_text," percentage points ",
                   above_below_equal, "the national average for ",gap_comparison_group,"that achieve at least the expected level of development for ",tolower(input$AoL_select),".")
     
     if(group_type=="FSM"&gap_comparison_group=="all other children in "){
-      str2 <- paste("For ", input$Local_Authority," the gap for ",title_group,"is ", abs(national_gap_perc)," percentage points ",
+      str2 <- paste("For ", input$Local_Authority," the gap for ",title_group," is ", abs(national_gap_perc)," percentage points ",
                     above_below_equal, " ",gap_comparison_group, " in ",input$Local_Authority,"that achieve at least the expected level of development for ",tolower(input$AoL_select),".")
     }
     # str1 <- paste("For ", input$Local_Authority," ",LA_perc,"% of " , title_group," achieve the expected level of development for ",tolower(input$AoL_select) ,"compared to  ",
@@ -2375,7 +2375,7 @@ shinyServer(function(input, output,session) {
     selected_ages<-input$Ages
     selected_ages_input<- if_else(selected_ages=="Two Year Olds","two_year_olds","three_and_four_year_olds")
     
-    National_variable_name<- colnames(dataset[8])
+    National_variable_name<- colnames(dataset[10])
     National_figure<- dataset %>% select(National_variable_name) %>% distinct %>% as.numeric()
     # 
     # #For graph title/legend/labels
@@ -2462,8 +2462,10 @@ shinyServer(function(input, output,session) {
     LA_take_up<-Take_up_neighbours_plot_data() %>% filter(LA_Name==selected_LA_Name) %>% select(EYFSP_LA_variable) %>% as.numeric()
     
     
-    str1 <- paste("For ", input$Local_Authority," the percentage of " , tolower(input$Ages)," benefitting from  funded early education places is ",
-                  LA_take_up,"% compared to ",national_take_up,"% of ",tolower(input$Ages)," nationally")
+    str1 <- paste0("The percentage of ",tolower(input$Ages)," benefitting funded early education places in ",input$Local_Authority," is ",LA_take_up,"% compared to ",national_take_up,"% nationally.")
+    
+    #str1 <- paste("For ", input$Local_Authority," the percentage of " , tolower(input$Ages)," benefitting from  funded early education places is ",
+     #             LA_take_up,"% compared to ",national_take_up,"% of ",tolower(input$Ages)," nationally")
     HTML(str1)
   })
 
