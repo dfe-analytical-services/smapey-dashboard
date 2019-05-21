@@ -591,7 +591,7 @@ body <- dashboardBody(
     ),#closing bracket for take-up
 
 
-# Notes Tab ---------------------------------------------------------------
+# User Guidance Tab ---------------------------------------------------------------
 
 
  
@@ -608,10 +608,10 @@ body <- dashboardBody(
             
             h3("Notes and Caveats"),
             tags$ol(
-               tags$li("Improving social mobility through education' policy paper, 'Unlocking Talent, Fulfilling Potential is published here:"),
+               tags$li("Improving social mobility through education' policy paper, 'Unlocking Talent, Fulfilling Potential' is published here:"),
                tags$a(href="https://www.gov.uk/government/publications/improving-social-mobility-through-education","https://www.gov.uk/government/publications/improving-social-mobility-through-education"),
                tags$li("Data source for EYFSP is the National Pupil Database."),
-               tags$li("Data source for take up rates it is  the Early Years Census (EYC), School Census (SC), and School Level Annual School Census (SLASC)."),
+               tags$li("Data sources for take up rates are the Early Years Census (EYC), School Census (SC), and School Level Annual School Census (SLASC)."),
                tags$li("This dashboard considers the ten nearest statistical neighbours in line with the LAIT. There are many different sets of statistical neighbours as each is derived using a different method which generates different results. All change from time to time as new data are generated and as assumptions change. Some local authorities do not have any close statistical neighbours. 
 For further information please look at the LAIT: "),
                tags$a(href="https://www.gov.uk/government/publications/local-authority-interactive-tool-lait.","https://www.gov.uk/government/publications/local-authority-interactive-tool-lait."),
@@ -620,7 +620,7 @@ For further information please look at the LAIT: "),
                tags$li("The information on GLD and Areas of Learning relates to the EYFSP publication. For more information on EYFSP results please see here:"),
                tags$a(href="https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile","https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile"), 
               
-               tags$li("The information on take up relates to the Education provision: children under 5 years of age publication. For more information, please see section on Education provision: children under 5 years of age, here:"), 
+               tags$li("The information on take up relates to the 'Education provision: children under 5 years of age publication'. For more information, please see section on Education provision: children under 5 years of age, here:"), 
                tags$a(href="https://www.gov.uk/government/collections/statistics-childcare-and-early-years#provision-for-children-under-5-years-of-age-in-england","https://www.gov.uk/government/collections/statistics-childcare-and-early-years "),
                tags$li("EYFSP: The gap calculations were made using unrounded data held by DfE.  
                        In a small number of instances there may be a small difference in calculating the gaps using published data due to using rounded data."),
@@ -661,7 +661,7 @@ For further information please look at the LAIT: "),
               tags$li("Take up: Any child attending more than one private, voluntary or independent provider will have only been counted once."),
               tags$li("Take up: Includes some local authority day nurseries registered to receive funding, includes maintained nursery, primary and secondary schools, primary and secondary converter academies, 
                       primary and secondary sponsor-led academies, primary and secondary free schools, city technology colleges, special schools and general hospital schools."),
-              tags$li("Take up: Note: Some caution should be exercised when comparing take-up rates at local authority level. Further information can be found in the accompanying technical document for Education provision: children under 5 years of age, here: "),
+              tags$li("Take up: Note: Some caution should be exercised when comparing take-up rates at local authority level. Further information can be found in the accompanying technical document for 'Education provision: children under 5 years of age', here: "),
                       tags$a(href="https://www.gov.uk/government/collections/statistics-childcare-and-early-years#provision-for-children-under-5-years-of-age-in-england","https://www.gov.uk/government/collections/statistics-childcare-and-early-years"),
               tags$li("Take up: Percentages are shown to the nearest whole number and based on unrounded numbers.")
                
