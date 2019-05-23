@@ -26,6 +26,10 @@ Here is a selection of abbreviations and definitions from the user guidance tab:
     <td>Those children who are not eligible for FSM or their FSM eligibility was unknown</td>   
   </tr>
   <tr>
+    <td>ELG</td>
+    <td>Early Learning Goal</td>   
+  </tr>
+  <tr>
     <td>EYFSP</td>
     <td>Early Years Foundation Stage Profile</td>   
   </tr>

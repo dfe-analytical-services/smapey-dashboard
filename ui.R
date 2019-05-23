@@ -1,7 +1,7 @@
 #
-# This is the user-interface for the SMAP EY Dashboard
+# This is the user-interface for the EY Outcomes Dashboard
 # It has a
-#   -Notes Page
+#  
 #   -Summary and Context Page with sub tabs for
 #         -Summary
 #         -Context
@@ -16,7 +16,7 @@
 #           - Gaps
 #   -Take Up  with percentages benefitting from funded education
 # 
-#
+#   -User Guidance Page - helper functions are available throughout the dashboard with excerpts to this page
 
 library(shinydashboard)
 
@@ -25,13 +25,13 @@ sidebar <- dashboardSidebar(
     #   https://stackoverflow.com/questions/31013769/locking-r-shiny-dashboard-sidebar-shinydashboard 
     # style = "position: fixed; overflow: visible;",  # this fixed the side bar and broke other things, so not including
      
-    selectInput("Local_Authority", "LA",
+    selectInput(inputId="Local_Authority", label="LA",
                 choices = EYFSP_Data$LA_Name, multiple=FALSE, #selectize=TRUE,
                 width = '98%',selected = "Bury"),
     menuItem("Cover Page", tabName = "cover", icon = icon("book-open")),
     menuItem("Summary and Context", tabName = "context", icon = icon("dashboard")),
     menuItem("Good Level of Development", tabName = "GLD", icon = icon("dashboard")),
-    menuItem("Area of Learning", tabName = "AoL", icon = icon("dashboard"),
+    menuItem("Areas of Learning", tabName = "AoL", icon = icon("dashboard"),
              menuSubItem("Comm and Language and Lit", tabName = "combined"),
              menuSubItem("Individual Areas", tabName = "individual_AoLs")),
     menuItem("Take up", tabName = "Take_up", icon = icon("dashboard") ),  
@@ -40,6 +40,10 @@ sidebar <- dashboardSidebar(
 )
 
 body <- dashboardBody(
+  tags$head(includeScript("www/google-analytics.js")),
+  
+  
+  
   tabItems(
 
 # Cover Page --------------------------------------------------------------
@@ -47,27 +51,38 @@ body <- dashboardBody(
     
     tabItem(tabName = "cover",
             h2("UNDER DEVELOPMENT, NOT LIVE, DO NOT USE", style = "color:red"),
-            h2("Early Years Dashboard"),
-            h3("about the dashboard and SMAP"),
+            h2("Early Years Outcomes Dashboard"),
+            h3("About the dashboard and Department for Education's social mobility programme"),
             br(),
-            p("The Department for Education published ‘Unlocking Talent, Fulfilling Potential: a plan for improving social mobility through education’, which sets out the Government’s ambitions for the wider education system, making sure that great education translates into great opportunities and jobs for everyone, and that no community is left behind."),
-            br(),  
-            p("Our first life stage ambition is to ",
-              strong("close the word gap in the early years"),
-              ". Development gaps between disadvantaged children and their peers are particularly pronounced in early language, and these gaps have a profound impact later in life. We also know that high quality early education starting at age two can have an impact on long-term social mobility."),
-            br(),
-            p("The Early Years Dashboard  supports  the first life stage ambition, by providing information to help compare the attainment gap between disadvantaged children (measured by children known to be receiving free school meals) and their peers. Local authorities will also be able to see the performance of children identified as having a special educational need."),
-            p("The Early Years Dashboard includes: "),
+            p("In July 2018, the Secretary of State for Education announced his ambition to ",
+             # https://stackoverflow.com/questions/54134541/how-to-create-a-single-line-of-text-with-hyperlink-or-other-elements-on-same-lin
+               strong("halve the proportion of children who do not achieve at least expected levels across all goals in the 'communication and language' and 'literacy' areas of learning "),
+              "at the end of reception year by 2028. His speech is available here:",a("https://www.gov.uk/government/speeches/education-secretary-sets-vision-for-boosting-social-mobility.",href="https://www.gov.uk/government/speeches/education-secretary-sets-vision-for-boosting-social-mobility")
+            ),
+           
+           p("This ambition builds on ",a("'Unlocking Talent, Fulfilling Potential: a plan for improving social mobility through education', ",
+             #a("https://www.gov.uk/government/publications/improving-social-mobility-through-education",
+               href= "https://www.gov.uk/government/publications/improving-social-mobility-through-education"),"which set out the Government's plans to close the word gap in the early years. "
+
+             ),
+           p("We know that development gaps between disadvantaged children and their peers are particularly pronounced in early language, and these gaps have a profound impact later in life. And we also know that high quality early education starting at age two can have an impact on long-term social mobility."
+             ),
+           p("We have created the Early Years Outcomes Dashboard to support local areas by making the most important early years social mobility metrics easily available. The dashboard sets out the latest data on progress in each area towards the Secretary of State's ten year ambition, and provides further information to help compare the attainment gap between disadvantaged children (measured by children known to be receiving free school meals) and their peers. Local authorities will also be able to see the performance of children identified as having a special educational need."
+             ),
+           
+            #br(),
+            p("The Early Years Outcomes Dashboard  supports  the first life stage ambition, by providing information to help compare the attainment gap between disadvantaged children (measured by children known to be receiving free school meals) and their peers. Local authorities will also be able to see the performance of children identified as having a special educational need."),
+            p("The Early Years Outcomes Dashboard includes: "),
             #https://stackoverflow.com/questions/46766411/whitespace-in-r-shiny
             p(HTML('&emsp;&emsp;'),"- the percentage of children who achieve a good level of development."), 
-            p(HTML('&emsp;&emsp;'),"- the percentage of children achieving at least the expected level of development for communication and language and literacy combined."),  
+            p(HTML('&emsp;&emsp;'),"- the percentage of children achieving at least the expected level of development for communication and language and literacy (combined)."),  
             p(HTML('&emsp;&emsp;'),"- the percentage of children achieving at least the expected level of development for communication and language, literacy, and  numeracy."), 
             p(HTML('&emsp;&emsp;'),"- the percentage of children benefitting from funded early education places."),
-            p("Local authorities will be able to compare the gap between disadvantaged children and their peers both within their areas and against the national average. They will also be able to benchmark themselves against  ten nearest local authority statistical neighbours, and against all local authorities. The overall aim of the Early Years Dashboard is to increase focus on how well disadvantaged children are performing in the early years.
+            p("Local authorities will be able to compare the gap between disadvantaged children and their peers both within their areas and against the national average. They will also be able to benchmark themselves against  ten nearest local authority statistical neighbours, and against all local authorities.This will allow local authorities to clearly identify 'peer' authorities who face similar challenges, but who are seeing different results, and to make contact. The overall aim of the Early Years Outcomes Dashboard is to increase focus on how well disadvantaged children are performing in the early years.
               "),
             
             br(),
-            p(" Please refer to the 'notes' tab for additional information and caveats. In addition, please click the 'question icon' (see an example to the right) for a subset of the information available on the user guidance tab. The icon is situated to the right where available.
+            p(" Please refer to the 'User Guidance' tab for additional information and caveats. In addition, please click the 'question icon' (see an example to the right) for a subset of the information available on the user guidance tab. The icon is situated to the right where available.
               ") %>%  helper(icon = "question-circle", 
                      colour = "turquoise",
                      size = "s",
@@ -201,7 +216,7 @@ body <- dashboardBody(
                 id = "tabset1",width = 12,#, height = "500px"
                 tabPanel("Percentages achieving a good level of development", 
                          fluidRow(
-                                      box(width=8, title="Neighbours", solidHeader = TRUE, status="primary",
+                                      box(width=8, title="Statistical Neighbours", solidHeader = TRUE, status="primary",
                                             htmlOutput("GLD_neighbour_plot_graph_title"),
                                             plotOutput("GLD_neighbour_plot")
                                           ),
@@ -231,7 +246,7 @@ body <- dashboardBody(
                                   )
                                 ),
                            fluidRow(
-                                    box(width=8, title="Neighbours Gaps", solidHeader = TRUE,status="primary",
+                                    box(width=8, title="Statistical Neighbours Gaps", solidHeader = TRUE,status="primary",
                                         htmlOutput("GLD_neighbour_gap_plot_graph_title"),
                                           plotOutput("GLD_neighbour_gaps_plot")
                                        ),
@@ -322,7 +337,7 @@ body <- dashboardBody(
                 tabPanel("Percentages achieving at least expected level of development", "",
                          fluidRow(         
                           
-                                    box(width=8, title="Neighbours", solidHeader = TRUE,status="primary",
+                                    box(width=8, title="Statistical Neighbours", solidHeader = TRUE,status="primary",
                                        htmlOutput("AoL_comb_neighbour_plot_graph_title"),
                                        plotOutput("AoL_comb_neighbour_plot")      
                                        ),
@@ -340,7 +355,7 @@ body <- dashboardBody(
                 
                 tabPanel("Gaps", "", 
                     fluidRow(
-                           box(width=8, title="Neighbours Gaps", solidHeader = TRUE,status="primary",
+                           box(width=8, title="Statistical Neighbours Gaps", solidHeader = TRUE,status="primary",
                                htmlOutput("AoL_comb_neighbours_gaps_plot_graph_title"),
                               plotOutput("AoL_comb_neighbours_gaps_plot")) ,
                            box(width=4, title="Trend", solidHeader = TRUE, status="primary",
@@ -431,7 +446,7 @@ body <- dashboardBody(
                 id = "tabset1",width = 12,#, height = "500px"
                 tabPanel("Percentages achieving at least expected level of development", "",
                          fluidRow(  
-                                   box(width=8, title="Neighbours", solidHeader = TRUE, status="primary",
+                                   box(width=8, title="Statistical Neighbours", solidHeader = TRUE, status="primary",
                                        htmlOutput("AoL_neighbour_plot_graph_title"),
                                        plotOutput("AoL_neighbour_plot")
                                   ),
@@ -459,7 +474,7 @@ body <- dashboardBody(
                                   )
                                 ),
                          fluidRow(  
-                                    box(width=8, title="Neighbours Gaps", solidHeader = TRUE, status="primary",
+                                    box(width=8, title="Statistical Neighbours Gaps", solidHeader = TRUE, status="primary",
                                          htmlOutput("AoL_neighbours_gaps_plot_graph_title"),
                                          plotOutput("AoL_neighbours_gaps_plot")
                                         ),
@@ -515,7 +530,7 @@ body <- dashboardBody(
     
     
     tabItem(tabName = "Take_up",
-            h2("Benefitting from Funded Education") %>% 
+            h2("Benefitting from Funded Early Education") %>% 
               helper(
                 icon = "question-circle",
                 colour = "turquoise",
@@ -536,7 +551,7 @@ body <- dashboardBody(
                     ),
             fluidRow(
                         column(12,
-                                  box(width=8, title="Neighbour Graph", solidHeader = TRUE,
+                                  box(width=8, title="Statistical Neighbours", solidHeader = TRUE,
                                       htmlOutput("Take_up_neighbour_plot_graph_title"),
                                       plotOutput("Take_up_neighbour_plot"),status="primary"
                                       ),    
@@ -587,7 +602,7 @@ body <- dashboardBody(
     ),#closing bracket for take-up
 
 
-# Notes Tab ---------------------------------------------------------------
+# User Guidance Tab ---------------------------------------------------------------
 
 
  
@@ -595,7 +610,7 @@ body <- dashboardBody(
             # h2("Notes"),
             # br(),
             h3("Hints and tips on using the Dashboard"),
-            p("- Note when there is additional content available within the tabs, for example in the 'Summary and Content' tab there are both 'Summary' and 'Context' sub tab items beneath the boxes"),
+            p("- Note, there are often sub tab items within the tabs. For example, in the 'Summary and Content' tab there are both 'Summary' and 'Context' sub tab items beneath the boxes"),
             p("- Scroll down to see all tab content. National graphs are at the bottom of main tabs"),
             p("- For national graphs, see 'Show all LAs' drop down to far right of graph. This toggles showing all LA names or just the selected LA and the statistical neighbours"),
             h3("Abbreviations and Definitions"),
@@ -604,10 +619,10 @@ body <- dashboardBody(
             
             h3("Notes and Caveats"),
             tags$ol(
-               tags$li("Improving social mobility through education' policy paper, 'Unlocking Talent, Fulfilling Potential is published here:"),
+               tags$li("Improving social mobility through education' policy paper, 'Unlocking Talent, Fulfilling Potential' is published here:"),
                tags$a(href="https://www.gov.uk/government/publications/improving-social-mobility-through-education","https://www.gov.uk/government/publications/improving-social-mobility-through-education"),
                tags$li("Data source for EYFSP is the National Pupil Database."),
-               tags$li("Data source for take up rates it is  the Early Years Census (EYC), School Census (SC), and School Level Annual School Census (SLASC)."),
+               tags$li("Data sources for take up rates are the Early Years Census (EYC), School Census (SC), and School Level Annual School Census (SLASC)."),
                tags$li("This dashboard considers the ten nearest statistical neighbours in line with the LAIT. There are many different sets of statistical neighbours as each is derived using a different method which generates different results. All change from time to time as new data are generated and as assumptions change. Some local authorities do not have any close statistical neighbours. 
 For further information please look at the LAIT: "),
                tags$a(href="https://www.gov.uk/government/publications/local-authority-interactive-tool-lait.","https://www.gov.uk/government/publications/local-authority-interactive-tool-lait."),
@@ -616,16 +631,16 @@ For further information please look at the LAIT: "),
                tags$li("The information on GLD and Areas of Learning relates to the EYFSP publication. For more information on EYFSP results please see here:"),
                tags$a(href="https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile","https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile"), 
               
-               tags$li("The information on take up relates to the Education provision: children under 5 years of age publication. For more information, please see section on Education provision: children under 5 years of age, here:"), 
+               tags$li("The information on take up relates to the 'Education provision: children under 5 years of age publication'. For more information, please see section on 'Education provision: children under 5 years of age', here:"), 
                tags$a(href="https://www.gov.uk/government/collections/statistics-childcare-and-early-years#provision-for-children-under-5-years-of-age-in-england","https://www.gov.uk/government/collections/statistics-childcare-and-early-years "),
                tags$li("EYFSP: The gap calculations were made using unrounded data held by DfE.  
                        In a small number of instances there may be a small difference in calculating the gaps using published data due to using rounded data."),
-               tags$li("EYFSP: For the early years foundation stage profile statistical release, there are slight differences between the numbers reported in this publication when compared to the results published on 18 October 2018. Headline attainment percentages are not affected. For the SMAP EY Dashboard calculations, the number of pupils eligible was based on in the pupil characteristics statistical release. This means that for GLD for all and the Communication and Langugage and Literature (combined) metrics, results may differ by about 0.1% from the results published on 18 October."),
+               tags$li("EYFSP: For the early years foundation stage profile statistical release, there are slight differences between the numbers reported in this publication when compared to the results published on 18 October 2018. Headline attainment percentages are not affected. For the EY Outcomes Dashboard calculations, the number of pupils eligible was based on in the pupil characteristics statistical release. This means that for GLD for all and the Communication and Langugage and Literature (combined) metrics, results may differ by about 0.1% from the results published on 18 October."),
                tags$li("EYFSP: LA data can only be provided in the dashboard if it is available in the underlying data.
                        For more information, please see the disclosure control section of the technical document for information on data suppression here: "),
                tags$a(href="https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile","https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile"),
               
-               tags$li("EYFSP: Children achieving at least the expected level in the ELGs within the three prime areas of learning and within literacy and mathematics is classed as achieving 
+               tags$li("EYFSP: Children achieving at least the expected level in the early learning goals within the three prime areas of learning and within literacy and mathematics is classed as achieving 
                       a 'good level of development'."),
               tags$li("EYFSP: Figures based on final data."),
               tags$li("EYFSP: Only includes children with a valid result for every early learning goal."),
@@ -657,7 +672,7 @@ For further information please look at the LAIT: "),
               tags$li("Take up: Any child attending more than one private, voluntary or independent provider will have only been counted once."),
               tags$li("Take up: Includes some local authority day nurseries registered to receive funding, includes maintained nursery, primary and secondary schools, primary and secondary converter academies, 
                       primary and secondary sponsor-led academies, primary and secondary free schools, city technology colleges, special schools and general hospital schools."),
-              tags$li("Take up: Note: Some caution should be exercised when comparing take-up rates at local authority level. Further information can be found in the accompanying technical document for Education provision: children under 5 years of age, here: "),
+              tags$li("Take up: Note: Some caution should be exercised when comparing take-up rates at local authority level. Further information can be found in the accompanying technical document for 'Education provision: children under 5 years of age', here: "),
                       tags$a(href="https://www.gov.uk/government/collections/statistics-childcare-and-early-years#provision-for-children-under-5-years-of-age-in-england","https://www.gov.uk/government/collections/statistics-childcare-and-early-years"),
               tags$li("Take up: Percentages are shown to the nearest whole number and based on unrounded numbers.")
                
@@ -668,7 +683,7 @@ For further information please look at the LAIT: "),
 
 # Put them together into a dashboardPage
 dashboardPage(
-  dashboardHeader(title = "Early Years Dashboard",titleWidth = 450),
+  dashboardHeader(title = "Early Years Outcomes Dashboard",titleWidth = 450),
   sidebar,
   body
   

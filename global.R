@@ -125,7 +125,7 @@ get_trend_data_fn <- function(dataset,group,   LA, GLD_or_AoL,AoL_type="CL_and_L
   #National_key= paste0("National average for ",national_legend," children")
   National_key="National %"
   #Graph Title
-  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," compared to ",national_legend," children nationally")
+  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," compared to ",national_legend," children nationally.")
 
   #First retrieve the trend data for the LA 
   LA_data_step1<- dataset %>% filter(.,LA_Name==LA) %>% 
@@ -222,6 +222,7 @@ get_trend_data_fn_v2 <- function(dataset,group,LA, GLD_or_AoL_or_Take_up,AoL_typ
   gap_type_input<- gap_type #used to work out titles
   gap_type=if_else(group=="FSM",paste0("_",gap_type),"") #used to get the gap type variables
   
+  
   #create variable names to select from three year trend table
   variable_percent_stem<-if_else(GLD_or_AoL_or_Take_up=="GLD",paste0(group,"_","Percent","_",GLD_or_AoL_or_Take_up,"_"),
                                 # paste0(group,"_",Percent_or_Gap,"_",GLD_or_AoL_or_Take_up,"_",AoL_type,"_") ) #function could be changed to select either percentages or gaps
@@ -291,7 +292,7 @@ get_trend_data_fn_v2 <- function(dataset,group,LA, GLD_or_AoL_or_Take_up,AoL_typ
   National_key= "National %"#paste0("National average for ",national_legend," children")
   
   #Graph Title
-  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," compared to ",national_legend," children nationally")
+  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," compared to ",national_legend," children nationally.")
  
   #Graph Title Gaps
   Plot_title_gaps<-paste0("Trend in percentage point gap of ",trend_graph_title_group," in ",LA," compared to ",gap_comparison_group,nationally)
@@ -368,6 +369,12 @@ get_graph_title <- function(LA, C="",group="", neighbour_gap_context,GLD_or_AoL_
                               if_else(gap_type=="National average: gap with all other children","all other children",
                                       
                                       if_else(gap_type=="National average: gap with FSM children","children known to be eligible for FSM","")))
+  
+  # added to differentiate between percenatge gap (within LA) and percentage point gap (every other gap)
+    
+  gap_type_text<- if_else(selected_gap_type==paste0("all other children in ",LA),"","the national average for ")
+  
+  
   #Which group do we need to compare the chosen group with?
   gap_comparison_group=if_else(group_type== "FSM" ,selected_gap_type,
                                if_else(group_type== "All_Other","all other children",
@@ -380,9 +387,9 @@ get_graph_title <- function(LA, C="",group="", neighbour_gap_context,GLD_or_AoL_
   
   
   measure<-   case_when(
-    GLD_or_AoL_or_take_up=="GLD" ~ "achieving a GLD at EYFSP",
+    GLD_or_AoL_or_take_up=="GLD" ~ "achieving a good level of development at EYFSP",
     GLD_or_AoL_or_take_up=="AoL" ~ paste0("achieving at least the expected level of development at EYFSP for ",tolower(AoL_type)),
-    GLD_or_AoL_or_take_up=="Take_up" ~ " benefitting from funded early educational places"
+    GLD_or_AoL_or_take_up=="Take_up" ~ " benefitting from funded early education places"
   )
 
     if(neighbour_gap_context=="context")  {  
@@ -391,13 +398,17 @@ get_graph_title <- function(LA, C="",group="", neighbour_gap_context,GLD_or_AoL_
   }
   
   if(neighbour_gap_context=="neighbour")    {
-    title<- paste0("The percentage of ",title_group," within ", LA," ",measure,", compared with the 10 nearest statistical neighbours	.")
+    title<- paste0("The percentage of ",title_group," in ", LA," ",measure," compared with the 10 nearest statistical neighbours.")
   }
   
-  
+   
   if(neighbour_gap_context=="neighbour_gap")    {
-    title<- paste0("The percentage gap between ",title_group," within ", LA," and the national average for ",gap_comparison_group," ",measure,", compared with the 10 nearest statistical neighbours.")
+   
+    title<- paste0("The percentage point gap between ",title_group," in ", LA," and ",gap_type_text,gap_comparison_group," ",measure," compared with the 10 nearest statistical neighbours.")
   }  
+  
+  
+  #   }  
   
   #return the title
   title  
@@ -601,7 +612,7 @@ get_trend_take_up_data_fn <- function(dataset, LA,age_group, latest_year)
   LA_key<- paste0(LA," take-up percent")
   National_key= "National take-up percent"
   # #Graph Title
-  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," benefitting from funded early education places compared to all ",trend_graph_title_group," children nationally")
+  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," benefitting from funded early education places compared to ",trend_graph_title_group," children nationally.")
   
   
   #First retrieve the trend data for the LA
@@ -750,7 +761,7 @@ get_national_plot <- function(dataset="long_data_step1",neighbour_dataset,metric
           theme(axis.ticks.x = element_line(colour = "grey30"),
                 panel.grid.minor.y = element_blank(),
                 panel.grid.major.x = element_blank())+
-          labs(x="",y="Percentage",title=paste0("The percentage of ",title_group," in ",selected_LA,title_part," nationally.	"))+
+         labs(x="",y="Percentage",title=paste0("The percentage of ",title_group," in ",selected_LA," compared to ",title_group," nationally.	"))+
          theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.4),
                legend.position="bottom")#,
     #coord_flip()
@@ -770,7 +781,7 @@ get_national_plot <- function(dataset="long_data_step1",neighbour_dataset,metric
        #                         guide = guide_legend(override.aes =list(colour= "grey30")))
     }
     if(context=="no"){ # horizontal line not wanted on context national graphs
-    p1<- p1 +geom_hline(aes(yintercept=national,linetype="National Percentage"),colour='grey50')+#,linetype="longdash")+
+    p1<- p1 +geom_hline(aes(yintercept=national,linetype="National percentage"),colour='grey50')+#,linetype="longdash")+
       scale_linetype_manual(name = "", values = "longdash", #longdash
                             guide = guide_legend(override.aes =list(colour= "grey30")))
     }
@@ -832,12 +843,14 @@ get_variables_selected_LA <- function(metric="GLD",group="FSM",AoL_type="",selec
 # Small table for notes tab -----------------------------------------------
 # Easier to format by putting in table.
 
-notes_tab_terms<- c("All other","AoL","CL","EYFSP","FSM","Gap within LA","GLD","LA","Lit","NA ","Non SEN","SEN","Statistical Neighbours","Unclassified")
+notes_tab_terms<- c("All other","AoL","CL","ELG","EYFSP","EY","FSM","Gap within LA","GLD","LA","Lit","NA ","Non SEN","SEN","SMAP","Statistical Neighbours","Unclassified")
 
 notes_tab_explanations<- c("Those children who are not eligible for FSM or their FSM eligibility was unknown",
                            "Area of Learning",
                            "Communication and Language",
+                           "Early Learning Goals",
                            "Early Years Foundation Stage Profile",
+                           "Early Years",
                            "Those children who are known to be eligible for free school meals",
                            "Gap between FSM and all other children within the LA for a selected measure",
                            "Good Level of Development",
@@ -845,8 +858,9 @@ notes_tab_explanations<- c("Those children who are not eligible for FSM or their
                            "Literacy",
                            "Not applicable",
                            
-                           "Those children identified as having no special education needs",
-                           "Those children identified as having  special education needs",
+                           "Those children not identified as having special educational needs",
+                           "Those children identified as having special educational needs",
+                           "Social Mobility Action Plan",
                            "For each LA, statistical neighbours  are the LAs with the most similar socio-economic characteristics",
                            "Those children for whom SEN provision could not be determined"
                            
