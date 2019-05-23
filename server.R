@@ -336,10 +336,6 @@ shinyServer(function(input, output,session) {
                                  if_else(group_type== "All_Other","all other children",
                                          if_else(group_type=="All", "all children", "children identified as SEN")))
   
-    # These lines differentiate between percentage gap (within LA) and percentage point gap (every other gap) 
-    is_gap_within_LA<- if_else(GLD_input_group=="FSM",input$GLD_gap_select,"")
-    is_gap_within_LA<- if_else(is_gap_within_LA=="Within the LA: gap with all other children","yes","")
-    perc_or_perc_point <- if_else(is_gap_within_LA=="yes","percent","percentage points")
     
     # need to ensure that numbers such as 72.0% are not reported as 72%
     LA_perc_text<-sprintf('%.1f', LA_perc)
@@ -349,11 +345,11 @@ shinyServer(function(input, output,session) {
    # str1 <- paste("For ", input$Local_Authority," ",LA_perc_text,"% of children " , title_group," achieve a good level of development compared to  ",
     str1 <- paste0("In ", input$Local_Authority,", ",LA_perc_text,"% of " , title_group," achieve a good level of development compared to  ",
                   national_perc_text,"% of ",comparison_group," nationally.")
-    str2 <- paste0("In ", input$Local_Authority,", the gap for ",title_group," is ", abs_national_gap_perc_text," ",perc_or_perc_point," ",
+    str2 <- paste0("In ", input$Local_Authority,", the gap for ",title_group," is ", abs_national_gap_perc_text," percentage points ",
                   above_below_equal, " the national average for ",gap_comparison_group,".")
     
     if(group_type=="FSM"&gap_comparison_group=="all other children in "){
-      str2 <- paste0("In ", input$Local_Authority," the gap for ",title_group," is ", abs_national_gap_perc_text," ",perc_or_perc_point," ",
+      str2 <- paste0("In ", input$Local_Authority,", the gap for ",title_group," is ", abs_national_gap_perc_text," percentage points ",
                     above_below_equal, " ",gap_comparison_group, " ",input$Local_Authority,".")
        
 
@@ -419,9 +415,7 @@ shinyServer(function(input, output,session) {
                                 if_else(selected_gap_type=="National average: gap with all other children","gap_All_Other_Nat_Av",
                                         if_else(selected_gap_type=="National average: gap with FSM children","gap_FSM_Nat_Av","")))
     selected_gap_type<- if_else(GLD_input_group=="FSM",selected_gap_type,"")
-    # added to differentiate between percentage gap (within LA) and percentage point gap (every other gap)
-    perc_or_perc_point_gap<- if_else(selected_gap_type=="gap_within_LA","Percentage gap","Percentage point gap")
-    
+     
     
     dataset_2<- dataset %>% select("Percentage_Gap"=EYFSP_variable,everything())
     dataset_3<- dataset_2 %>% mutate(LA_selected_by_user=if_else((LA_Name==selected_LA& Percentage_Gap<0),"Chosen LA below national average",
@@ -461,7 +455,7 @@ shinyServer(function(input, output,session) {
       #geom_text(aes(label=Percentage_Gap,vjust = ifelse(Percentage_Gap >= 0, -0.25, 1)), position=position_dodge(width=0.9))+#, vjust=-0.25)+
       geom_text(aes(label=gap_2,vjust = ifelse(Percentage_Gap >= 0, -0.25, 1)), position=position_dodge(width=0.9))+#, vjust=-0.25)+
       
-     labs(x="",y=perc_or_perc_point_gap)+
+     labs(x="",y="Percentage point gap")+
     theme(legend.position = "bottom",
                                         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.4))
     plot
@@ -638,11 +632,6 @@ shinyServer(function(input, output,session) {
     
     
     
-    # These lines differentiate between percentage gap (within LA) and percentage point gap (every other gap) 
-    selected_gap_type<-input$GLD_gap_select
-    is_gap_within_LA<- if_else(selected_gap_type=="Within the LA: gap with all other children","yes","")
-    perc_or_perc_point_gap <- if_else(is_gap_within_LA=="yes","Percent gap","Percentage point gap")
-    
     plot<- ggplot(gaps_data,aes(x=Year,y=`Percentage Gap`, fill=above_or_below) )+ #NB aes_string as we are passing a variable rather than an actual name
       geom_col() +  
       scale_fill_manual(name= ""
@@ -656,7 +645,7 @@ shinyServer(function(input, output,session) {
       theme(axis.ticks.x = element_line(colour = "grey30"),
             panel.grid.minor.y = element_blank(),
             panel.grid.major.x = element_blank()) +
-      labs(y=perc_or_perc_point_gap)
+      labs(y="Percentage point gap")
     
     plot  
   })
@@ -1639,7 +1628,7 @@ shinyServer(function(input, output,session) {
       theme(axis.ticks.x = element_line(colour = "grey30"),
             panel.grid.minor.y = element_blank(),
             panel.grid.major.x = element_blank())+
-      labs(y="Percentage gap")
+      labs(y="Percentage point gap")
     plot  
   })
   
@@ -1807,12 +1796,7 @@ shinyServer(function(input, output,session) {
     gap_comparison_group=if_else(group_type== "FSM" ,selected_gap_type,
                                  if_else(group_type== "All_Other","all other children",
                                          if_else(group_type=="All", "all children", "children identified as SEN")))
-   # These lines differentiate between percentage gap (within LA) and percentage point gap (every other gap) 
-   is_gap_within_LA<- if_else(AoL_input_group=="FSM",input$AoL_gap_select,"")
-   is_gap_within_LA<- if_else(is_gap_within_LA=="Within the LA: gap with all other children","yes","")
-    perc_or_perc_point <- if_else(is_gap_within_LA=="yes","percent","percentage points")
-    
-    # need to ensure that numbers such as 72.0% are not reported as 72% 
+  
     
     LA_perc_text<-sprintf('%.1f', LA_perc)
     national_perc_text<- sprintf('%.1f',national_perc)
@@ -1820,11 +1804,11 @@ shinyServer(function(input, output,session) {
     
     str1 <- paste0("In ", input$Local_Authority,", ",LA_perc_text,"% of " , title_group," achieve the expected level of development for ",tolower(input$AoL_select) ," compared to  ",
                   national_perc_text,"% of ",comparison_group," nationally.")
-    str2 <- paste0("In ", input$Local_Authority,", the gap for ",title_group," is ", abs_national_gap_perc_text," ",perc_or_perc_point," ",
+    str2 <- paste0("In ", input$Local_Authority,", the gap for ",title_group," is ", abs_national_gap_perc_text," percentage points ",
                   above_below_equal, " the national average for ",gap_comparison_group," that achieve at least the expected level of development for ",tolower(input$AoL_select),".")
     
     if(group_type=="FSM"&gap_comparison_group=="all other children in "){
-      str2 <- paste0("In ", input$Local_Authority," the gap for ",title_group," is ", abs(national_gap_perc)," ",perc_or_perc_point," ",
+      str2 <- paste0("In ", input$Local_Authority,", the gap for ",title_group," is ", abs(national_gap_perc)," percentage points ",
                     above_below_equal, " ",gap_comparison_group, " in ",input$Local_Authority," that achieve at least the expected level of development for ",tolower(input$AoL_select),".")
     }
     
@@ -2024,8 +2008,6 @@ shinyServer(function(input, output,session) {
                                 if_else(selected_gap_type=="National average: gap with all other children","gap_All_Other_Nat_Av",
                                         if_else(selected_gap_type=="National average: gap with FSM children","gap_FSM_Nat_Av","")))
     selected_gap_type<- if_else(AoL_input_group=="FSM",selected_gap_type,"")
-    # added to differentiate between percentage gap (within LA) and percentage point gap (every other gap)
-    perc_or_perc_point_gap<- if_else(selected_gap_type=="gap_within_LA","Percentage gap","Percentage point gap")
     
     
     # Alternative way to do title- found issues with wrapping
@@ -2070,8 +2052,7 @@ shinyServer(function(input, output,session) {
             panel.grid.major.x = element_blank())+
       theme(legend.position = "bottom",
             axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.4))+
-     # labs(x="",y="Percentage Gap",title=paste0("Graph comparing the percentage of children eligible ",title_group," in ",selected_LA," with national percentage.	"))
-      labs(x="",y=perc_or_perc_point_gap)
+      labs(x="",y="Percentage point gap")
     plot
     # how to put labels over each bar https://stackoverflow.com/questions/12018499/how-to-put-labels-over-geom-bar-for-each-bar-in-r-with-ggplot2
     # Solution for making labels appear above and below axis
@@ -2229,12 +2210,6 @@ shinyServer(function(input, output,session) {
     AoL_trend_data_list<-AoL_trend_plot_data()
     AoL_trend_data<-AoL_trend_gap_plot_data()$trend_data_gaps
     
-    # These lines differentiate between percentage gap (within LA) and percentage point gap (every other gap) 
-    selected_gap_type<-input$AoL_gap_select
-    is_gap_within_LA<- if_else(selected_gap_type=="Within the LA: gap with all other children","yes","")
-    perc_or_perc_point_gap <- if_else(is_gap_within_LA=="yes","Percent gap","Percentage point gap")
-    
-    
     gaps_data<-AoL_trend_data %>% mutate(above_or_below=if_else(`Percentage Gap`>=0,"above_or_equal","below"))
     
     plot<- ggplot(gaps_data,aes(x=Year,y=`Percentage Gap`, fill=above_or_below) )+ #NB aes_string as we are passing a variable rather than an actual name
@@ -2250,7 +2225,7 @@ shinyServer(function(input, output,session) {
       theme(axis.ticks.x = element_line(colour = "grey30"),
             panel.grid.minor.y = element_blank(),
             panel.grid.major.x = element_blank())+
-            labs(y=perc_or_perc_point_gap)
+            labs(y="Percentage point gap")
     
     plot  
 
@@ -2455,7 +2430,7 @@ shinyServer(function(input, output,session) {
     LA_take_up<-Take_up_neighbours_plot_data() %>% filter(LA_Name==selected_LA_Name) %>% select(EYFSP_LA_variable) %>% as.numeric()
     
     
-    str1 <- paste0("The percentage of ",tolower(input$Ages)," benefitting funded early education places in ",input$Local_Authority," is ",LA_take_up,"% compared to ",national_take_up,"% nationally.")
+    str1 <- paste0("The percentage of ",tolower(input$Ages)," benefitting from funded early education places in ",input$Local_Authority," is ",LA_take_up,"% compared to ",national_take_up,"% nationally.")
     
     #str1 <- paste("For ", input$Local_Authority," the percentage of " , tolower(input$Ages)," benefitting from  funded early education places is ",
      #             LA_take_up,"% compared to ",national_take_up,"% of ",tolower(input$Ages)," nationally")

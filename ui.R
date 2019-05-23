@@ -1,5 +1,5 @@
 #
-# This is the user-interface for the SMAP EY Dashboard
+# This is the user-interface for the EY Outcomes Dashboard
 # It has a
 #  
 #   -Summary and Context Page with sub tabs for
@@ -635,7 +635,7 @@ For further information please look at the LAIT: "),
                tags$a(href="https://www.gov.uk/government/collections/statistics-childcare-and-early-years#provision-for-children-under-5-years-of-age-in-england","https://www.gov.uk/government/collections/statistics-childcare-and-early-years "),
                tags$li("EYFSP: The gap calculations were made using unrounded data held by DfE.  
                        In a small number of instances there may be a small difference in calculating the gaps using published data due to using rounded data."),
-               tags$li("EYFSP: For the early years foundation stage profile statistical release, there are slight differences between the numbers reported in this publication when compared to the results published on 18 October 2018. Headline attainment percentages are not affected. For the SMAP EY Dashboard calculations, the number of pupils eligible was based on in the pupil characteristics statistical release. This means that for GLD for all and the Communication and Langugage and Literature (combined) metrics, results may differ by about 0.1% from the results published on 18 October."),
+               tags$li("EYFSP: For the early years foundation stage profile statistical release, there are slight differences between the numbers reported in this publication when compared to the results published on 18 October 2018. Headline attainment percentages are not affected. For the EY Outcomes Dashboard calculations, the number of pupils eligible was based on in the pupil characteristics statistical release. This means that for GLD for all and the Communication and Langugage and Literature (combined) metrics, results may differ by about 0.1% from the results published on 18 October."),
                tags$li("EYFSP: LA data can only be provided in the dashboard if it is available in the underlying data.
                        For more information, please see the disclosure control section of the technical document for information on data suppression here: "),
                tags$a(href="https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile","https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile"),

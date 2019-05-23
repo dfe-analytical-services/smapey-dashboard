@@ -223,13 +223,6 @@ get_trend_data_fn_v2 <- function(dataset,group,LA, GLD_or_AoL_or_Take_up,AoL_typ
   gap_type=if_else(group=="FSM",paste0("_",gap_type),"") #used to get the gap type variables
   
   
-  
-  # These lines differentiate between percentage gap (within LA) and percentage point gap (every other gap) 
-   
-  is_gap_within_LA<- if_else(gap_type_input=="gap_within_LA","yes","")
-  perc_or_perc_point_gap <- if_else(is_gap_within_LA=="yes","percent gap","percentage point gap")
-  
-  
   #create variable names to select from three year trend table
   variable_percent_stem<-if_else(GLD_or_AoL_or_Take_up=="GLD",paste0(group,"_","Percent","_",GLD_or_AoL_or_Take_up,"_"),
                                 # paste0(group,"_",Percent_or_Gap,"_",GLD_or_AoL_or_Take_up,"_",AoL_type,"_") ) #function could be changed to select either percentages or gaps
@@ -302,7 +295,7 @@ get_trend_data_fn_v2 <- function(dataset,group,LA, GLD_or_AoL_or_Take_up,AoL_typ
   Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," compared to ",national_legend," children nationally.")
  
   #Graph Title Gaps
-  Plot_title_gaps<-paste0("Trend in ",perc_or_perc_point_gap," of ",trend_graph_title_group," in ",LA," compared to ",gap_comparison_group,nationally)
+  Plot_title_gaps<-paste0("Trend in percentage point gap of ",trend_graph_title_group," in ",LA," compared to ",gap_comparison_group,nationally)
   
   #First retrieve the trend data for the LA 
   LA_data_step1<- dataset%>% filter(.,LA_Name==LA) %>% 
@@ -378,7 +371,8 @@ get_graph_title <- function(LA, C="",group="", neighbour_gap_context,GLD_or_AoL_
                                       if_else(gap_type=="National average: gap with FSM children","children known to be eligible for FSM","")))
   
   # added to differentiate between percenatge gap (within LA) and percentage point gap (every other gap)
-    perc_or_perc_point_gap<- if_else(selected_gap_type==paste0("all other children in ",LA),"percentage gap","percentage point gap")
+    
+  gap_type_text<- if_else(selected_gap_type==paste0("all other children in ",LA),"","the national average for ")
   
   
   #Which group do we need to compare the chosen group with?
@@ -409,8 +403,8 @@ get_graph_title <- function(LA, C="",group="", neighbour_gap_context,GLD_or_AoL_
   
    
   if(neighbour_gap_context=="neighbour_gap")    {
-   #title<- paste0("The percentage gap between ",title_group," within ", LA," and the national average for ",gap_comparison_group," ",measure," compared with the 10 nearest statistical neighbours.")
-    title<- paste0("The ",perc_or_perc_point_gap," between ",title_group," in ", LA," and the national average for ",gap_comparison_group," ",measure," compared with the 10 nearest statistical neighbours.")
+   
+    title<- paste0("The percentage point gap between ",title_group," in ", LA," and ",gap_type_text,gap_comparison_group," ",measure," compared with the 10 nearest statistical neighbours.")
   }  
   
   
