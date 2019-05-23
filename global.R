@@ -125,7 +125,7 @@ get_trend_data_fn <- function(dataset,group,   LA, GLD_or_AoL,AoL_type="CL_and_L
   #National_key= paste0("National average for ",national_legend," children")
   National_key="National %"
   #Graph Title
-  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," compared to ",national_legend," children nationally")
+  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," compared to ",national_legend," children nationally.")
 
   #First retrieve the trend data for the LA 
   LA_data_step1<- dataset %>% filter(.,LA_Name==LA) %>% 
@@ -299,7 +299,7 @@ get_trend_data_fn_v2 <- function(dataset,group,LA, GLD_or_AoL_or_Take_up,AoL_typ
   National_key= "National %"#paste0("National average for ",national_legend," children")
   
   #Graph Title
-  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," compared to ",national_legend," children nationally")
+  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," compared to ",national_legend," children nationally.")
  
   #Graph Title Gaps
   Plot_title_gaps<-paste0("Trend in ",perc_or_perc_point_gap," of ",trend_graph_title_group," in ",LA," compared to ",gap_comparison_group,nationally)
@@ -395,7 +395,7 @@ get_graph_title <- function(LA, C="",group="", neighbour_gap_context,GLD_or_AoL_
   measure<-   case_when(
     GLD_or_AoL_or_take_up=="GLD" ~ "achieving a good level of development at EYFSP",
     GLD_or_AoL_or_take_up=="AoL" ~ paste0("achieving at least the expected level of development at EYFSP for ",tolower(AoL_type)),
-    GLD_or_AoL_or_take_up=="Take_up" ~ " benefitting from funded early educational places"
+    GLD_or_AoL_or_take_up=="Take_up" ~ " benefitting from funded early education places"
   )
 
     if(neighbour_gap_context=="context")  {  
@@ -404,13 +404,13 @@ get_graph_title <- function(LA, C="",group="", neighbour_gap_context,GLD_or_AoL_
   }
   
   if(neighbour_gap_context=="neighbour")    {
-    title<- paste0("The percentage of ",title_group," in ", LA," ",measure,", compared with the 10 nearest statistical neighbours	.")
+    title<- paste0("The percentage of ",title_group," in ", LA," ",measure," compared with the 10 nearest statistical neighbours.")
   }
   
    
   if(neighbour_gap_context=="neighbour_gap")    {
-   #title<- paste0("The percentage gap between ",title_group," within ", LA," and the national average for ",gap_comparison_group," ",measure,", compared with the 10 nearest statistical neighbours.")
-    title<- paste0("The ",perc_or_perc_point_gap," between ",title_group," in ", LA," and the national average for ",gap_comparison_group," ",measure,", compared with the 10 nearest statistical neighbours.")
+   #title<- paste0("The percentage gap between ",title_group," within ", LA," and the national average for ",gap_comparison_group," ",measure," compared with the 10 nearest statistical neighbours.")
+    title<- paste0("The ",perc_or_perc_point_gap," between ",title_group," in ", LA," and the national average for ",gap_comparison_group," ",measure," compared with the 10 nearest statistical neighbours.")
   }  
   
   
@@ -618,7 +618,7 @@ get_trend_take_up_data_fn <- function(dataset, LA,age_group, latest_year)
   LA_key<- paste0(LA," take-up percent")
   National_key= "National take-up percent"
   # #Graph Title
-  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," benefitting from funded early education places compared to ",trend_graph_title_group," children nationally")
+  Plot_title<-paste0("Trend in percentage of ",trend_graph_title_group," in ",LA," benefitting from funded early education places compared to ",trend_graph_title_group," children nationally.")
   
   
   #First retrieve the trend data for the LA
@@ -849,13 +849,14 @@ get_variables_selected_LA <- function(metric="GLD",group="FSM",AoL_type="",selec
 # Small table for notes tab -----------------------------------------------
 # Easier to format by putting in table.
 
-notes_tab_terms<- c("All other","AoL","CL","ELG","EYFSP","FSM","Gap within LA","GLD","LA","Lit","NA ","Non SEN","SEN","Statistical Neighbours","Unclassified")
+notes_tab_terms<- c("All other","AoL","CL","ELG","EYFSP","EY","FSM","Gap within LA","GLD","LA","Lit","NA ","Non SEN","SEN","SMAP","Statistical Neighbours","Unclassified")
 
 notes_tab_explanations<- c("Those children who are not eligible for FSM or their FSM eligibility was unknown",
                            "Area of Learning",
                            "Communication and Language",
                            "Early Learning Goals",
                            "Early Years Foundation Stage Profile",
+                           "Early Years",
                            "Those children who are known to be eligible for free school meals",
                            "Gap between FSM and all other children within the LA for a selected measure",
                            "Good Level of Development",
@@ -864,7 +865,8 @@ notes_tab_explanations<- c("Those children who are not eligible for FSM or their
                            "Not applicable",
                            
                            "Those children not identified as having special educational needs",
-                           "Those children identified as having  special education needs",
+                           "Those children identified as having special educational needs",
+                           "Social Mobility Action Plan",
                            "For each LA, statistical neighbours  are the LAs with the most similar socio-economic characteristics",
                            "Those children for whom SEN provision could not be determined"
                            

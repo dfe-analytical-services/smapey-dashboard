@@ -1578,8 +1578,8 @@ shinyServer(function(input, output,session) {
     HTML(str1)
   })
   
-  
-  
+
+# AoL Combined Trend Gap Plot Data ----------------------------------------
   AoL_comb_trend_gap_plot_data <- reactive({
     AoL_input_group<-"All" #input$AoL_group_select
     # AoL_input_group<-if_else(AoL_input_group=="All Other","All_Other"
@@ -1618,7 +1618,7 @@ shinyServer(function(input, output,session) {
   })#
   
   
-  
+  # AoL Combined Trend Gap Plot ---------------------------------------- 
   output$AoL_comb_trend_gap_plot <- renderPlot({
     
     
@@ -1638,7 +1638,8 @@ shinyServer(function(input, output,session) {
       theme_minimal()+
       theme(axis.ticks.x = element_line(colour = "grey30"),
             panel.grid.minor.y = element_blank(),
-            panel.grid.major.x = element_blank())
+            panel.grid.major.x = element_blank())+
+      labs(y="Percentage gap")
     plot  
   })
   
@@ -2374,14 +2375,9 @@ shinyServer(function(input, output,session) {
     
     National_variable_name<- colnames(dataset[10])
     National_figure<- dataset %>% select(National_variable_name) %>% distinct %>% as.numeric()
-    # 
-    # #For graph title/legend/labels
-    # group_type<- "All"
+    
     title_group= tolower(selected_ages)
-    # Plot_title_1<-paste0("Graph showing the percentage of ",title_group," benefitting from funded early education places, compared with the 10 nearest statistical neighbours	.")				
-    # Plot_title_2<-wrapper(Plot_title_1, width = 90)
-    # 
-    # Plot_title<- Plot_title_2
+    
     
     
     # some code to make the y axis upper limit dynamic

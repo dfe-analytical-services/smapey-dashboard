@@ -1,7 +1,7 @@
 #
 # This is the user-interface for the SMAP EY Dashboard
 # It has a
-#   -Notes Page
+#  
 #   -Summary and Context Page with sub tabs for
 #         -Summary
 #         -Context
@@ -16,7 +16,7 @@
 #           - Gaps
 #   -Take Up  with percentages benefitting from funded education
 # 
-#
+#   -User Guidance Page - helper functions are available throughout the dashboard with excerpts to this page
 
 library(shinydashboard)
 
@@ -31,7 +31,7 @@ sidebar <- dashboardSidebar(
     menuItem("Cover Page", tabName = "cover", icon = icon("book-open")),
     menuItem("Summary and Context", tabName = "context", icon = icon("dashboard")),
     menuItem("Good Level of Development", tabName = "GLD", icon = icon("dashboard")),
-    menuItem("Area of Learning", tabName = "AoL", icon = icon("dashboard"),
+    menuItem("Areas of Learning", tabName = "AoL", icon = icon("dashboard"),
              menuSubItem("Comm and Language and Lit", tabName = "combined"),
              menuSubItem("Individual Areas", tabName = "individual_AoLs")),
     menuItem("Take up", tabName = "Take_up", icon = icon("dashboard") ),  
@@ -51,23 +51,34 @@ body <- dashboardBody(
     
     tabItem(tabName = "cover",
             h2("UNDER DEVELOPMENT, NOT LIVE, DO NOT USE", style = "color:red"),
-            h2("Early Years Dashboard"),
-            h3("about the dashboard and SMAP"),
+            h2("Early Years Outcomes Dashboard"),
+            h3("About the dashboard and Department for Education's social mobility programme"),
             br(),
-            p("The Department for Education published ‘Unlocking Talent, Fulfilling Potential: a plan for improving social mobility through education’, which sets out the Government’s ambitions for the wider education system, making sure that great education translates into great opportunities and jobs for everyone, and that no community is left behind."),
-            br(),  
-            p("Our first life stage ambition is to ",
-              strong("close the word gap in the early years"),
-              ". Development gaps between disadvantaged children and their peers are particularly pronounced in early language, and these gaps have a profound impact later in life. We also know that high quality early education starting at age two can have an impact on long-term social mobility."),
-            br(),
-            p("The Early Years Dashboard  supports  the first life stage ambition, by providing information to help compare the attainment gap between disadvantaged children (measured by children known to be receiving free school meals) and their peers. Local authorities will also be able to see the performance of children identified as having a special educational need."),
-            p("The Early Years Dashboard includes: "),
+            p("In July 2018, the Secretary of State for Education announced his ambition to ",
+             # https://stackoverflow.com/questions/54134541/how-to-create-a-single-line-of-text-with-hyperlink-or-other-elements-on-same-lin
+               strong("halve the proportion of children who do not achieve at least expected levels across all goals in the 'communication and language' and 'literacy' areas of learning "),
+              "at the end of reception year by 2028. His speech is available here:",a("https://www.gov.uk/government/speeches/education-secretary-sets-vision-for-boosting-social-mobility.",href="https://www.gov.uk/government/speeches/education-secretary-sets-vision-for-boosting-social-mobility")
+            ),
+           
+           p("This ambition builds on ",a("'Unlocking Talent, Fulfilling Potential: a plan for improving social mobility through education', ",
+             #a("https://www.gov.uk/government/publications/improving-social-mobility-through-education",
+               href= "https://www.gov.uk/government/publications/improving-social-mobility-through-education"),"which set out the Government's plans to close the word gap in the early years. "
+
+             ),
+           p("We know that development gaps between disadvantaged children and their peers are particularly pronounced in early language, and these gaps have a profound impact later in life. And we also know that high quality early education starting at age two can have an impact on long-term social mobility."
+             ),
+           p("We have created the Early Years Outcomes Dashboard to support local areas by making the most important early years social mobility metrics easily available. The dashboard sets out the latest data on progress in each area towards the Secretary of State's ten year ambition, and provides further information to help compare the attainment gap between disadvantaged children (measured by children known to be receiving free school meals) and their peers. Local authorities will also be able to see the performance of children identified as having a special educational need."
+             ),
+           
+            #br(),
+            p("The Early Years Outcomes Dashboard  supports  the first life stage ambition, by providing information to help compare the attainment gap between disadvantaged children (measured by children known to be receiving free school meals) and their peers. Local authorities will also be able to see the performance of children identified as having a special educational need."),
+            p("The Early Years Outcomes Dashboard includes: "),
             #https://stackoverflow.com/questions/46766411/whitespace-in-r-shiny
             p(HTML('&emsp;&emsp;'),"- the percentage of children who achieve a good level of development."), 
-            p(HTML('&emsp;&emsp;'),"- the percentage of children achieving at least the expected level of development for communication and language and literacy combined."),  
+            p(HTML('&emsp;&emsp;'),"- the percentage of children achieving at least the expected level of development for communication and language and literacy (combined)."),  
             p(HTML('&emsp;&emsp;'),"- the percentage of children achieving at least the expected level of development for communication and language, literacy, and  numeracy."), 
             p(HTML('&emsp;&emsp;'),"- the percentage of children benefitting from funded early education places."),
-            p("Local authorities will be able to compare the gap between disadvantaged children and their peers both within their areas and against the national average. They will also be able to benchmark themselves against  ten nearest local authority statistical neighbours, and against all local authorities. The overall aim of the Early Years Dashboard is to increase focus on how well disadvantaged children are performing in the early years.
+            p("Local authorities will be able to compare the gap between disadvantaged children and their peers both within their areas and against the national average. They will also be able to benchmark themselves against  ten nearest local authority statistical neighbours, and against all local authorities.This will allow local authorities to clearly identify 'peer' authorities who face similar challenges, but who are seeing different results, and to make contact. The overall aim of the Early Years Outcomes Dashboard is to increase focus on how well disadvantaged children are performing in the early years.
               "),
             
             br(),
@@ -519,7 +530,7 @@ body <- dashboardBody(
     
     
     tabItem(tabName = "Take_up",
-            h2("Benefitting from Funded Education") %>% 
+            h2("Benefitting from Funded Early Education") %>% 
               helper(
                 icon = "question-circle",
                 colour = "turquoise",
@@ -620,7 +631,7 @@ For further information please look at the LAIT: "),
                tags$li("The information on GLD and Areas of Learning relates to the EYFSP publication. For more information on EYFSP results please see here:"),
                tags$a(href="https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile","https://www.gov.uk/government/collections/statistics-early-years-foundation-stage-profile"), 
               
-               tags$li("The information on take up relates to the 'Education provision: children under 5 years of age publication'. For more information, please see section on Education provision: children under 5 years of age, here:"), 
+               tags$li("The information on take up relates to the 'Education provision: children under 5 years of age publication'. For more information, please see section on 'Education provision: children under 5 years of age', here:"), 
                tags$a(href="https://www.gov.uk/government/collections/statistics-childcare-and-early-years#provision-for-children-under-5-years-of-age-in-england","https://www.gov.uk/government/collections/statistics-childcare-and-early-years "),
                tags$li("EYFSP: The gap calculations were made using unrounded data held by DfE.  
                        In a small number of instances there may be a small difference in calculating the gaps using published data due to using rounded data."),
@@ -672,7 +683,7 @@ For further information please look at the LAIT: "),
 
 # Put them together into a dashboardPage
 dashboardPage(
-  dashboardHeader(title = "Early Years Dashboard",titleWidth = 450),
+  dashboardHeader(title = "Early Years Outcomes Dashboard",titleWidth = 450),
   sidebar,
   body
   
