@@ -58,7 +58,7 @@ body <- dashboardBody(
             ," his ambition to ",
              # https://stackoverflow.com/questions/54134541/how-to-create-a-single-line-of-text-with-hyperlink-or-other-elements-on-same-lin
                "halve the proportion of children who do not achieve at least expected levels across all goals in the 'communication and language' and 'literacy' areas of learning ",
-              "at the end of reception year by 2028. "
+              "in the Early Years Foundation Stage Profile at the end of reception year by 2028. "
             ),
            
            p("This ambition builds on ",a("'Unlocking Talent, Fulfilling Potential: a plan for improving social mobility through education', ",
@@ -66,20 +66,18 @@ body <- dashboardBody(
                href= "https://www.gov.uk/government/publications/improving-social-mobility-through-education"),"which set out the Government's plans to close the word gap in the early years (‘the first life ambition’). "
 
              ),
-           p("We know that development gaps between disadvantaged children and their peers are particularly pronounced in early language, and these gaps have a profound impact later in life. And we also know that high quality early education starting at age two can have an impact on long-term social mobility."
+           p("We know that development gaps between disadvantaged children and their peers are particularly pronounced in early language, and these gaps have a profound impact later in life. And we also know that high quality early education can have an impact on long-term social mobility."
              ),
-           p("We have created the Early Years Outcomes Dashboard to support local areas by making the most important early years social mobility metrics easily available. The dashboard sets out the latest data on progress in each area towards the Secretary of State's ten year ambition, and provides further information to help compare the attainment gap between disadvantaged children (measured by children known to be receiving free school meals) and their peers. Local authorities will also be able to see the performance of children identified as having a special educational need."
+           p("We have created the Early Years Outcomes Dashboard to support local areas by making the most important early years social mobility metrics easily available. The dashboard sets out the latest data on progress in each local authority towards the Secretary of State's ten year ambition, and provides further information to help compare the attainment gap between disadvantaged children (measured by children known to be receiving free school meals) and their peers. Local authorities will also be able to see the performance of children identified as having a special educational need."
              ),
            
-            #br(),
-            p("The Early Years Outcomes Dashboard also supports  the first life stage ambition, by providing information to help compare the attainment gap between disadvantaged children (measured by children known to be receiving free school meals) and their peers. Local authorities will also be able to see the performance of children identified as having a special educational need."),
             p("The Early Years Outcomes Dashboard includes: "),
             #https://stackoverflow.com/questions/46766411/whitespace-in-r-shiny
             p(HTML('&emsp;&emsp;'),"- the percentage of children who achieve a good level of development."), 
             p(HTML('&emsp;&emsp;'),"- the percentage of children achieving at least the expected level of development for communication and language and literacy (combined)."),  
             p(HTML('&emsp;&emsp;'),"- the percentage of children achieving at least the expected level of development for communication and language, literacy, and  numeracy."), 
-            p(HTML('&emsp;&emsp;'),"- the percentage of children benefitting from funded early education places."),
-            p("Local authorities will be able to compare the gap between disadvantaged children and their peers both within their areas and against the national average. They will also be able to benchmark themselves against  ten nearest local authority statistical neighbours, and against all local authorities. This will allow local authorities to clearly identify 'peer' authorities who face similar challenges, but who are seeing different results, and to make contact. The overall aim of the Early Years Outcomes Dashboard is to increase focus on how well disadvantaged children are performing in the early years.
+            p(HTML('&emsp;&emsp;'),"- the percentage of children benefitting from funded early education places for the two-year-old offer and funded early education (first 15 hours) for three and four year olds."),
+            p("Local authorities will be able to compare the gap between disadvantaged children and their peers both within their areas and against the national average. They will also be able to benchmark themselves against  ten nearest local authority statistical neighbours, and against all local authorities. This will allow local authorities to clearly identify 'peer' authorities who face similar contexts, but who are seeing different results. The overall aim of the Early Years Outcomes Dashboard is to increase focus on disadvantaged children development in the early years.
               "),
             
             br(),
@@ -92,7 +90,10 @@ body <- dashboardBody(
                      content = "By clicking this icon, a subset of information from the user guidance tab will be available."),
             br(),
             br(),
-            img(src = "Department_for_Education.png", height = 100, width = 150)
+            img(src = "Department_for_Education.png", height = 100, width = 150),
+            br(),
+            br(),
+            p("This is a new service - if you would like to provide feedback on this tool please contact ",a(href="mailto:ey.analysisandresearch@education.gov.uk","ey.analysisandresearch@education.gov.uk"))
     ),
  
 
