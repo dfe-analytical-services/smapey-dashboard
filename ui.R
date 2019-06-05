@@ -50,8 +50,7 @@ body <- dashboardBody(
 
     
     tabItem(tabName = "cover",
-            h2("UNDER DEVELOPMENT, NOT LIVE, DO NOT USE", style = "color:red"),
-            h2("Early Years Outcomes Dashboard"),
+          h2("Early Years Outcomes Dashboard"),
             h3("About the dashboard and Department for Education's social mobility programme"),
             br(),
             p("In July 2018, the Secretary of State for Education ",a("announced",href="https://www.gov.uk/government/speeches/education-secretary-sets-vision-for-boosting-social-mobility")
@@ -68,7 +67,7 @@ body <- dashboardBody(
              ),
            p("We know that development gaps between disadvantaged children and their peers are particularly pronounced in early language, and these gaps have a profound impact later in life. And we also know that high quality early education can have an impact on long-term social mobility."
              ),
-           p("We have created the Early Years Outcomes Dashboard to support local areas by making the most important early years social mobility metrics easily available. The dashboard sets out the latest data on progress in each local authority towards the Secretary of State's ten year ambition, and provides further information to help compare the attainment gap between disadvantaged children (measured by children known to be receiving free school meals) and their peers. Local authorities will also be able to see the performance of children identified as having a special educational need."
+           p("We have created the Early Years Outcomes Dashboard to support local areas by making the most important early years social mobility metrics easily available. The dashboard sets out the latest data on progress in each local authority towards the Secretary of State's ten year ambition, and provides further information to help compare the attainment gap between disadvantaged children (measured by children known to be eligible for free school meals) and their peers. Local authorities will also be able to see the performance of children identified as having a special educational need."
              ),
            
             p("The Early Years Outcomes Dashboard includes: "),
