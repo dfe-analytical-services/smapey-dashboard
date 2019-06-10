@@ -92,7 +92,7 @@ body <- dashboardBody(
             img(src = "Department_for_Education.png", height = 100, width = 150),
             br(),
             br(),
-            p("This is a new service - if you would like to provide feedback on this tool please contact ",a(href="mailto:ey.analysisandresearch@education.gov.uk","ey.analysisandresearch@education.gov.uk"))
+            p("This is a new service - if you would like to provide feedback on this tool please contact ",a(href="mailto:EarlyYears.SOCIALMOBILITY@education.gov.uk","EarlyYears.SOCIALMOBILITY@education.gov.uk"))
     ),
  
 
