@@ -34,7 +34,8 @@ sidebar <- dashboardSidebar(
     menuItem("Areas of Learning", tabName = "AoL", icon = icon("dashboard"),
              menuSubItem("Comm and Language and Lit", tabName = "combined"),
              menuSubItem("Individual Areas", tabName = "individual_AoLs")),
-    menuItem("Take up", tabName = "Take_up", icon = icon("dashboard") ),  
+    menuItem("Take up", tabName = "Take_up", icon = icon("dashboard"), 
+             badgeLabel = "updated 2019 data", badgeColor = "yellow"),  
     menuItem("User Guidance", icon = icon("file"), tabName = "notes")
   )#end of sidebar
 )
