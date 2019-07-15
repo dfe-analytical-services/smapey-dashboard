@@ -35,7 +35,7 @@ sidebar <- dashboardSidebar(
              menuSubItem("Comm and Language and Lit", tabName = "combined"),
              menuSubItem("Individual Areas", tabName = "individual_AoLs")),
     menuItem("Take up", tabName = "Take_up", icon = icon("dashboard"), 
-             badgeLabel = "updated 2019 data", badgeColor = "yellow"),  
+             badgeLabel = "updated - 2019 data", badgeColor = "yellow"),  
     menuItem("User Guidance", icon = icon("file"), tabName = "notes")
   )#end of sidebar
 )
@@ -665,9 +665,14 @@ For further information please look at the LAIT: "),
               tags$li("EYFSP: Where data is not available it will sometimes appear as zero and sometimes as NA."),
               tags$li("Take up: Population estimates at lower geographic levels, such as local authority, are subject to a greater degree of error.  
                        In some cases, local authority take-up rates can exceed 100%. Therefore, take-up rates at local authority level should be treated with more caution than national take-up rates."),
-              tags$li("Take up of three and four year olds only considers universal funded early education (first 15 hours)."),
+              tags$li("Take up of three and four year olds only considers funded early education (first 15 hours)."),
               tags$li("Take up: Count of children aged two at 31 December in the previous calendar year. Numbers of two-year-olds taking up places is expressed as a percentage of the two-year-old population eligible for a funded early education. The estimated number of eligible children is derived from data supplied to the Department for Education by the Department for Work and Pensions in November each year on the number of children believed to meet the benefit and tax credit eligibility criteria. 
-                       It represents the best data available on the number of eligible children in each local authority area, but excludes universal credit claimants."),
+                       It represents the best data available on the number of eligible children in each local authority area."),
+              tags$li("Take up: For 3- and 4-year-olds, the eligible population used to calculate take-up rates is the are adjusted ONS population estimates. 
+                        For 2-year-olds, take-up rates are expressed as a percentage of the estimated eligible population. This is the fifth time they have been based upon data from the Department for Work and Pensions. However, for 2019 the estimated eligible population data includes Universal Credit Full Service claimants for the first time. For further information see the accompanying technical document:"),
+                      tags$a(href="https://www.gov.uk/government/statistics/education-provision-children-under-5-years-of-age-january-2019","https://www.gov.uk/government/statistics/education-provision-children-under-5-years-of-age-january-2019"),
+              tags$li("Take up: For 3- and 4-year-olds, the ONS population estimates for 2017 and 2018 used in this publication have been revised, therefore take up rates for these years may differ to those previously published. For further information, see the accompanying technical document:"),
+              tags$a(href="https://www.gov.uk/government/statistics/education-provision-children-under-5-years-of-age-january-2019","https://www.gov.uk/government/statistics/education-provision-children-under-5-years-of-age-january-2019"),
               tags$li("Take up: Count of children aged three and four at 31 December in the previous calendar year. Numbers of three- and four-year-olds taking up places expressed as a 
                       percentage of the three- and four-year-old population."), 
 #                      #Population estimates from 2013 to 2017 have been revised, therefore take up rates may differ from previously published figures."),# applied to publication, but not a revision from the most recent 2018 publication
