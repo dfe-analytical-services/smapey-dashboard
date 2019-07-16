@@ -777,6 +777,8 @@ get_national_plot <- function(dataset="long_data_step1",neighbour_dataset,metric
       
       
       axis_upper_limit<-national_graph_2 %>% select(EYFSP_variable) %>% max()
+      # make sure axis_upper_limit is always above the highest number to nearest ten
+      axis_upper_limit<-round(axis_upper_limit,digits=-1)
       p1<- p1+scale_y_continuous(labels = scales::comma,breaks=seq(0,axis_upper_limit,10),limits=c(0, axis_upper_limit))
       
        # p1<- p1 +geom_hline(aes(yintercept=national,linetype="National Percentage"),colour='grey50')+#,linetype="longdash")+

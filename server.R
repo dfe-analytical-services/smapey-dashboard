@@ -2554,7 +2554,7 @@ shinyServer(function(input, output,session) {
     selected_ages<-input$Ages
     selected_ages_input<- if_else(selected_ages=="Two Year Olds","two","three_and_four")
     show_all_LAs_selection<- if_else(input$show_all_LAs_take_up_tab=="Yes",TRUE,FALSE)
-    get_national_plot(selected_LA=input$Local_Authority,neighbour_dataset=Take_up_neighbours_plot_data(),group = "",metric="Take_up",take_up_age=selected_ages_input,year=current_year,show_all_LAs=show_all_LAs_selection,national=national_take_up) 
+    get_national_plot(selected_LA=input$Local_Authority,neighbour_dataset=Take_up_neighbours_plot_data(),group = "",metric="Take_up",take_up_age=selected_ages_input,year=latest_year_take_up,show_all_LAs=show_all_LAs_selection,national=national_take_up) 
     
   })
   
