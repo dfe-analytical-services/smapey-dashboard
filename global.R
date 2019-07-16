@@ -21,9 +21,12 @@ library(DT)
 library(formattable)
 library(shinyhelper)
 
-relative_fp_long_data<- "Data/combined_long_data_2018_R_v5_postbeta_sup.csv"  # this has data for current years including statistical neighbours
+#relative_fp_long_data<- "Data/combined_long_data_2018_R_v5_postbeta_sup.csv"  # this has data for current years including statistical neighbours
+relative_fp_long_data<- "Data/combined_long_data_2019_R_v1_postbeta_sup.csv"  # this has data for current years including statistical neighbours
 relative_fp_three_years<- "Data/combined_three_years_data_2018_R_v5_postbeta_sup.csv"  # this has trend data
-relative_fp_additional_nat_stats<- "Data/20181220_Additional_National_Stats.csv" 
+
+#relative_fp_additional_nat_stats<- "Data/20181220_Additional_National_Stats.csv"
+relative_fp_additional_nat_stats<- "Data/Additional_National_Stats_2019_v1.csv" 
 
 #retrieve data
 long_data_step1<- read_csv(relative_fp_long_data) 
@@ -774,6 +777,8 @@ get_national_plot <- function(dataset="long_data_step1",neighbour_dataset,metric
       
       
       axis_upper_limit<-national_graph_2 %>% select(EYFSP_variable) %>% max()
+      # make sure axis_upper_limit is always above the highest number to nearest ten
+      axis_upper_limit<-round(axis_upper_limit,digits=-1)
       p1<- p1+scale_y_continuous(labels = scales::comma,breaks=seq(0,axis_upper_limit,10),limits=c(0, axis_upper_limit))
       
        # p1<- p1 +geom_hline(aes(yintercept=national,linetype="National Percentage"),colour='grey50')+#,linetype="longdash")+

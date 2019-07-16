@@ -26,7 +26,7 @@ library(shiny)
 shinyServer(function(input, output,session) {
   
   current_year<- 2018
-  latest_year_take_up<- 2018
+  latest_year_take_up<- 2019
   
   observe_helpers()
   # this does not seem to be working, but leaving here for now:
@@ -2453,7 +2453,7 @@ shinyServer(function(input, output,session) {
     trend_dataset<-  Take_up_neighbours_plot_data ()  
     selected_ages_input<- if_else(selected_ages=="Two Year Olds","two_year_olds","three_and_four_year_olds")
     
-    get_trend_take_up_data_fn(dataset=trend_dataset,LA=selected_LA,age_group = selected_ages_input, latest_year = current_year)
+    get_trend_take_up_data_fn(dataset=trend_dataset,LA=selected_LA,age_group = selected_ages_input, latest_year = latest_year_take_up)
     
   })
   
@@ -2554,7 +2554,7 @@ shinyServer(function(input, output,session) {
     selected_ages<-input$Ages
     selected_ages_input<- if_else(selected_ages=="Two Year Olds","two","three_and_four")
     show_all_LAs_selection<- if_else(input$show_all_LAs_take_up_tab=="Yes",TRUE,FALSE)
-    get_national_plot(selected_LA=input$Local_Authority,neighbour_dataset=Take_up_neighbours_plot_data(),group = "",metric="Take_up",take_up_age=selected_ages_input,year=current_year,show_all_LAs=show_all_LAs_selection,national=national_take_up) 
+    get_national_plot(selected_LA=input$Local_Authority,neighbour_dataset=Take_up_neighbours_plot_data(),group = "",metric="Take_up",take_up_age=selected_ages_input,year=latest_year_take_up,show_all_LAs=show_all_LAs_selection,national=national_take_up) 
     
   })
   
